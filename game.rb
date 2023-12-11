@@ -10,9 +10,8 @@ class Game
     @current_question = Question.new
   end
 
-  def next_turn
+  def next_player
     @current_player = (@current_player == @player1) ? @player2 : @player1
-    play_game
   end
 
   def game_over?
@@ -20,14 +19,12 @@ class Game
   end
 
   def game_winner
-    @player1.did_lose? ? @player2 : @player1
+    @player1.did_lose? ? @player2.name : @player1.name
   end
 
   def play_game
 
-    if game_over?
-      puts "#{game_winner} has won the game!"
-    else  
+    until game_over?
     
       puts "#{@current_player.name} you're up!"
 
@@ -42,10 +39,11 @@ class Game
         @current_player.remove_point
         puts "The current score is #{@player1.name}: #{@player1.score} and #{@player2.name}: #{@player2.score}"
       end
+
+      next_player
     end
 
-    next_turn
+    puts "#{game_winner} has won the game!"
 
   end
-
 end

@@ -12,6 +12,7 @@ class Game
 
   def next_turn
     @current_player = (@current_player == @player1) ? @player2 : @player1
+    play_game
   end
 
   def game_over?
@@ -36,10 +37,10 @@ class Game
 
       if @current_question.correct_answer?(current_answer)
         puts "That's correct!"
-      else puts "That is not the correct answer. You lose a point"
+        puts "The current score is #{@player1.name}: #{@player1.score} and #{@player2.name}: #{@player2.score}"
+      else puts "That is not the correct answer. You lose a point."
         @current_player.remove_point
-
-      puts "The current score is #{player1}: #{player1.score} and #{player2}: #{player2.score}"
+        puts "The current score is #{@player1.name}: #{@player1.score} and #{@player2.name}: #{@player2.score}"
       end
     end
 

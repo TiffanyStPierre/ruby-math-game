@@ -15,7 +15,7 @@ class Game
   end
 
   def game_over?
-    player1.did_lose? || player2.didlose?
+    @player1.did_lose? || @player2.did_lose?
   end
 
   def game_winner
@@ -31,10 +31,10 @@ class Game
       puts "#{@current_player.name} you're up!"
 
       @current_question = Question.new  
-      puts current_question.create_question
+      puts @current_question.create_question
       current_answer = gets.chomp
 
-      if current_answer = @current_question.correct_answer
+      if @current_question.correct_answer?(current_answer)
         puts "That's correct!"
       else puts "That is not the correct answer. You lose a point"
         @current_player.remove_point

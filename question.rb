@@ -11,8 +11,8 @@ class Question
     "What is #{@num1} + #{@num2}?"
   end
 
-  def correct_answer?(response)
-    response.to_i == @answer
+  def correct_answer?(current_answer)
+    current_answer.to_i == @answer
   end
 
 end

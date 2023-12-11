@@ -10,10 +10,41 @@ class Game
     @current_question = Question.new
   end
 
-  def 
+  def next_turn
+    @current_player = (@current_player == @player1) ? @player2 : @player1
   end
 
-  def 
+  def game_over?
+    player1.did_lose? || player2.didlose?
+  end
+
+  def game_winner
+    @player1.did_lose? ? @player2 : @player1
+  end
+
+  def play_game
+
+    if game_over?
+      puts "#{game_winner} has won the game!"
+    else  
+    
+      puts "#{@current_player.name} you're up!"
+
+      @current_question = Question.new  
+      puts current_question.create_question
+      current_answer = gets.chomp
+
+      if current_answer = @current_question.correct_answer
+        puts "That's correct!"
+      else puts "That is not the correct answer. You lose a point"
+        @current_player.remove_point
+
+      puts "The current score is #{player1}: #{player1.score} and #{player2}: #{player2.score}"
+      end
+    end
+
+    next_turn
+
   end
 
 end
